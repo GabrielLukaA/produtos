@@ -17,6 +17,7 @@ public class FabricanteService implements IService<Fabricante, Integer> {
 
 
     private FabricanteRepository fabricanteRepository;
+
     @Override
     public Fabricante cadastrar(IDTO obj) {
         Fabricante fabricante = new Fabricante();
@@ -33,16 +34,16 @@ public class FabricanteService implements IService<Fabricante, Integer> {
 
     @Override
     public void deletar(Integer integer) {
-
+        fabricanteRepository.deleteById(integer);
     }
 
     @Override
     public Fabricante buscarUm(Integer integer) {
-        return null;
+        return fabricanteRepository.findById(integer).get();
     }
 
     @Override
     public Collection<Fabricante> buscarTodos() {
-        return null;
+        return fabricanteRepository.findAll();
     }
 }
