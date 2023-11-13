@@ -2,8 +2,8 @@ package net.weg.produtos.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.produtos.model.dto.IDTO;
-import net.weg.produtos.model.entity.Produto;
-import net.weg.produtos.service.ProdutoService;
+import net.weg.produtos.model.entity.Categoria;
+import net.weg.produtos.service.CategoriaService;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +15,16 @@ import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/products")
-public class ProdutoController {
+@RequestMapping("/categories")
+public class CategoriaController {
 
 
-    private ProdutoService produtoService;
+    private CategoriaService categoriaService;
 
     @GetMapping()
-    public ResponseEntity<Collection<Produto>> buscarTodos() {
+    public ResponseEntity<Collection<Categoria>> buscarTodos() {
         try {
-            return new ResponseEntity<>(produtoService.buscarTodos(), HttpStatus.OK);
+            return new ResponseEntity<>(categoriaService.buscarTodos(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -32,18 +32,18 @@ public class ProdutoController {
 
 
     @GetMapping("/:{id}")
-    public ResponseEntity<Produto> buscarUm(@PathVariable Integer id) {
+    public ResponseEntity<Categoria> buscarUm(@PathVariable Integer id) {
         try {
-            return new ResponseEntity<>(produtoService.buscarUm(id), HttpStatus.OK);
+            return new ResponseEntity<>(categoriaService.buscarUm(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PutMapping("/:{id}")
-    public ResponseEntity<Produto> editar(@RequestBody IDTO obj) {
+    public ResponseEntity<Categoria> editar(@RequestBody IDTO obj) {
         try {
-            return new ResponseEntity<>(produtoService.editar(obj), HttpStatus.OK);
+            return new ResponseEntity<>(categoriaService.editar(obj), HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (NullPointerException e) {
@@ -52,9 +52,9 @@ public class ProdutoController {
     }
 
     @PostMapping()
-    public ResponseEntity<Produto> cadastrar(@RequestBody IDTO obj) {
+    public ResponseEntity<Categoria> cadastrar(@RequestBody IDTO obj) {
         try {
-            return new ResponseEntity<>(produtoService.cadastrar(obj), HttpStatus.OK);
+            return new ResponseEntity<>(categoriaService.cadastrar(obj), HttpStatus.OK);
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (DuplicateKeyException e) {
@@ -66,7 +66,7 @@ public class ProdutoController {
     @DeleteMapping("/:{id}")
     public ResponseEntity deletar(@PathVariable Integer id) {
         try {
-            produtoService.deletar(id);
+            categoriaService.deletar(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

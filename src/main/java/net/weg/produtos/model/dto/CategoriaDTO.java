@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CategoriaDTO implements IDTO{
+public class CategoriaDTO implements IDTO {
+
     private String nome;
+    private String descricao;
+
 }

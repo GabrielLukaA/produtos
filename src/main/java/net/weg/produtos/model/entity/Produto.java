@@ -19,11 +19,15 @@ public class Produto {
     private Integer id;
     @Column(unique = true)
     private Long codigoDeBarras;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private Double preco;
+    @Column(nullable = false)
     private String descricao;
-
+    @Column(nullable = false)
     private Double peso;
+    @Column(nullable = false)
     private Double medida; //?
     @ManyToOne
     private Fabricante fabricante;
@@ -31,10 +35,12 @@ public class Produto {
 
 
     @ManyToMany
+    @Column(nullable = false)
     private Collection<Categoria> categoria;
 
-
+    @Column(nullable = false)
     private String dataDeValidade;
+    @Column(nullable = false)
     private Integer quantidadeNoEstoque;
 
 

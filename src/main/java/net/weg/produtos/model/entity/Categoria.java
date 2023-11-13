@@ -24,4 +24,5 @@ public class Categoria {
     @JsonIgnore
     @ManyToMany(mappedBy = "categoria")
     private Collection<Produto> produtos;
+    private String descricao;
 }

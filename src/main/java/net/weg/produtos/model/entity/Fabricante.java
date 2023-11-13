@@ -16,6 +16,9 @@ public class Fabricante {
     @Id
     private Integer id;
     @Column(unique = true)
+
     private Long cnpj;
+    @Column(nullable = false)
     private String nome;
+    private String descricao;
 }

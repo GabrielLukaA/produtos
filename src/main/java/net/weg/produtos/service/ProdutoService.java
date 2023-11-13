@@ -21,7 +21,7 @@ import java.util.NoSuchElementException;
 public class ProdutoService implements IService<Produto, Integer> {
     ProdutoRepository produtoRepository;
 
-    public void verificar(Produto produto) throws NullPointerException, DuplicateKeyException {
+    public void verificar(Produto produto) {
 
         if (produto.getCodigoDeBarras()==null || produto.getDataDeValidade() == null || produto.getFabricante() == null || produto.getCategoria() == null ||  produto.getNome() == null || produto.getNome() == "" || produto.getPreco()<=0 || produto == null || produto.getPeso() <=0 || produto.getMedida()<=0){
             throw  new NullPointerException();
@@ -30,7 +30,7 @@ public class ProdutoService implements IService<Produto, Integer> {
     }
 
     @Override
-    public Produto cadastrar(IDTO obj) throws DuplicateKeyException, NullPointerException {
+    public Produto cadastrar(IDTO obj)  {
         Produto produto = new Produto();
         BeanUtils.copyProperties(obj, produto);
         verificar(produto);
@@ -41,7 +41,7 @@ public class ProdutoService implements IService<Produto, Integer> {
     }
 
     @Override
-    public Produto editar(IDTO obj) throws NoSuchElementException, NullPointerException {
+    public Produto editar(IDTO obj)  {
         Produto produto = new Produto();
         BeanUtils.copyProperties(obj, produto);
         verificar(produto);
@@ -52,7 +52,7 @@ public class ProdutoService implements IService<Produto, Integer> {
     }
 
     @Override
-    public void deletar(Integer integer) throws NoSuchElementException {
+    public void deletar(Integer integer)  {
         if (!produtoRepository.existsById(integer)){
             throw new NoSuchElementException();
         }
@@ -60,7 +60,7 @@ public class ProdutoService implements IService<Produto, Integer> {
     }
 
     @Override
-    public Produto buscarUm(Integer integer) throws NoSuchElementException {
+    public Produto buscarUm(Integer integer)  {
         if (!produtoRepository.existsById(integer)){
             throw new NoSuchElementException();
         }

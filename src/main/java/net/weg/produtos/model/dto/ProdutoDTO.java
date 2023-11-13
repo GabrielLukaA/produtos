@@ -9,7 +9,8 @@ import java.util.Collection;
 
 @Data
 @AllArgsConstructor
-public class ProdutoDTO implements IDTO{
+public class ProdutoDTO implements IDTO {
+
     private Long codigoDeBarras;
     private String nome;
     private Double preco;
@@ -20,4 +21,5 @@ public class ProdutoDTO implements IDTO{
     private Collection<Categoria> categoria;
     private String dataDeValidade;
     private Integer quantidadeNoEstoque;
+
 }
